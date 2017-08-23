@@ -31,7 +31,7 @@ for filename in glob.glob(os.path.join(path, '*.txt')):
 	'''
 
 	l = l.lower()
-	l = re.sub(r'[^a-z0-9_ \n]', ' ', l)
+	l = re.sub(r'[^a-z0-9_ \n]', '_', l)
 	l = l.split()
 
 	'''
@@ -80,6 +80,10 @@ Comparing each dct of words in loop and printing the similarity percentage.
 '''
 for dct1 in range(0,(len(filename_lst)-1)):
 	for dct2 in range((dct1+1),len(filename_lst)):
-		print('Simlarity between '+filename_lst[dct1]+' and '+filename_lst[dct2]+\
-			' is: '+str(similarity(dct_lst[filename_lst[dct1]],\
-			 dct_lst[filename_lst[dct2]])))
+		try:
+			print('Simlarity between '+filename_lst[dct1]+' and '+filename_lst[dct2]+\
+				' is: '+str(similarity(dct_lst[filename_lst[dct1]],\
+				 dct_lst[filename_lst[dct2]])))
+		except ZeroDivisionError:
+			print(filename_lst[dct1]+' and '+filename_lst[dct2]+\
+				' One or both files are empty.')
