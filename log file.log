@@ -1,0 +1,88 @@
+24/08/2017 08:12:10 BAG OF WORDS 
+
+Simlarity between test-1.txt and test-2.txt is: 51.63977794943223
+
+test-1.txt and test-3.txt One or both files are empty.
+
+test-1.txt and test-4.txt One or both files are empty.
+
+Simlarity between test-1.txt and test-5.txt is: 99.99999999999997
+
+test-2.txt and test-3.txt One or both files are empty.
+
+test-2.txt and test-4.txt One or both files are empty.
+
+Simlarity between test-2.txt and test-5.txt is: 51.63977794943223
+
+test-3.txt and test-4.txt One or both files are empty.
+
+test-3.txt and test-5.txt One or both files are empty.
+
+test-4.txt and test-5.txt One or both files are empty.
+
+24/08/2017 08:12:15 LCS SIMILARITIES 
+
+LCS between test-1.txt and test-2.txt is: 25.0
+
+LCS between test-1.txt and test-3.txt is: 0.0
+
+LCS between test-1.txt and test-4.txt is: 0.0
+
+LCS between test-1.txt and test-5.txt is: 100.0
+
+LCS between test-2.txt and test-3.txt is: 0.0
+
+LCS between test-2.txt and test-4.txt is: 0.0
+
+LCS between test-2.txt and test-5.txt is: 25.0
+
+test-3.txt and test-4.txt are empty.
+
+LCS between test-3.txt and test-5.txt is: 0.0
+
+LCS between test-4.txt and test-5.txt is: 0.0
+
+24/08/2017 08:23:06 LCS SIMILARITIES 
+
+LCS between test-1.txt and test-2.txt is: 25.0
+
+LCS between test-1.txt and test-3.txt is: 0.0
+
+LCS between test-1.txt and test-4.txt is: 0.0
+
+LCS between test-1.txt and test-5.txt is: 100.0
+
+LCS between test-2.txt and test-3.txt is: 0.0
+
+LCS between test-2.txt and test-4.txt is: 0.0
+
+LCS between test-2.txt and test-5.txt is: 25.0
+
+test-3.txt and test-4.txt are empty.
+
+LCS between test-3.txt and test-5.txt is: 0.0
+
+LCS between test-4.txt and test-5.txt is: 0.0
+
+24/08/2017 08:23:13 BAG OF WORDS 
+
+Simlarity between test-1.txt and test-2.txt is: 51.63977794943223
+
+test-1.txt and test-3.txt One or both files are empty.
+
+test-1.txt and test-4.txt One or both files are empty.
+
+Simlarity between test-1.txt and test-5.txt is: 99.99999999999997
+
+test-2.txt and test-3.txt One or both files are empty.
+
+test-2.txt and test-4.txt One or both files are empty.
+
+Simlarity between test-2.txt and test-5.txt is: 51.63977794943223
+
+test-3.txt and test-4.txt One or both files are empty.
+
+test-3.txt and test-5.txt One or both files are empty.
+
+test-4.txt and test-5.txt One or both files are empty.
+

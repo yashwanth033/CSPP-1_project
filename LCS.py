@@ -7,6 +7,7 @@ import math
 import glob
 import re
 import os
+import logging
 
 lst = []
 dct_lst = {}
@@ -40,7 +41,6 @@ for filename in glob.glob(os.path.join(path, '*.txt')):
 
 	filename_lst.append(file)
 	dct_lst[file] = l
-print(dct_lst)
 
 '''
 Longest common substring(LCS) is to be calulated between to dcts.
@@ -86,12 +86,21 @@ def LCS(dct1, dct2):
 '''
 Comparing all the lists of files.
 '''
-
+p = ''
 for i in range(0,(len(filename_lst)-1)):
 	for j in range((i+1),len(filename_lst)):
 		try:
-			print('LCS between '+filename_lst[i]+' and '+filename_lst[j]+\
+			s = ('LCS between '+str(filename_lst[i])+' and '+str(filename_lst[j])+\
 				' is: '+str(LCS(dct_lst[filename_lst[i]],\
 				 dct_lst[filename_lst[j]])*100))
 		except ZeroDivisionError:
-			print(filename_lst[i]+' and '+filename_lst[j],' are empty.')
+			s = (str(filename_lst[i])+' and '+str(filename_lst[j])+' are empty.')
+		p = p + '\n' + s + '\n'
+
+
+log = "log file.log"
+logging.basicConfig(filename=log,level=logging.DEBUG,\
+	format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+logging.info('LCS SIMILARITIES \n' + p)
+
+print(p)

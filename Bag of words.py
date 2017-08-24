@@ -14,6 +14,7 @@ import math
 import glob
 import re
 import os
+import logging
 
 lst = []
 dct_lst = {}
@@ -78,12 +79,22 @@ def similarity(dct1, dct2):
 '''
 Comparing each dct of words in loop and printing the similarity percentage.
 '''
+p = ''
 for dct1 in range(0,(len(filename_lst)-1)):
 	for dct2 in range((dct1+1),len(filename_lst)):
 		try:
-			print('Simlarity between '+filename_lst[dct1]+' and '+filename_lst[dct2]+\
-				' is: '+str(similarity(dct_lst[filename_lst[dct1]],\
-				 dct_lst[filename_lst[dct2]])))
+			s = ('Simlarity between '+str(filename_lst[dct1])+' and '+\
+				str(filename_lst[dct2])+' is: '+str(similarity\
+					(dct_lst[filename_lst[dct1]],dct_lst[filename_lst[dct2]])))
 		except ZeroDivisionError:
-			print(filename_lst[dct1]+' and '+filename_lst[dct2]+\
+			s = (str(filename_lst[dct1])+' and '+str(filename_lst[dct2])+\
 				' One or both files are empty.')
+		p = p + '\n' + s + '\n'
+
+
+log = "log file.log"
+logging.basicConfig(filename=log,level=logging.DEBUG,\
+	format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+logging.info('BAG OF WORDS \n' + p)
+
+print(p)
