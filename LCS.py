@@ -9,38 +9,43 @@ import re
 import os
 import logging
 
+import os
+pat = os.getcwd()
+pat = pat + '\word.txt'
+
 lst = []
 dct_lst = {}
 filename_lst = []
 path = os.getcwd()
 
 for filename in glob.glob(os.path.join(path, '*.txt')):
-	f = open(filename,'r')
-	l = f.read()
-	f.close()
+	if filename != pat:
+		f = open(filename,'r')
+		l = f.read()
+		f.close()
 
-	'''
-	Lower casing and removing special characters. Assuming words to be\
-	with alphabets, under_score and numeric characters only.
-	'''
+		'''
+		Lower casing and removing special characters. Assuming words to be\
+		with alphabets, under_score and numeric characters only.
+		'''
 
-	l = l.lower()
-	l = re.sub(r'[^a-z0-9_ \n]', '', l).split()
+		l = l.lower()
+		l = re.sub(r'[^a-z0-9_ \n]', '', l).split()
 
-	'''
-	Storing in dct_lst with file name as key an value a list of strings of words.\
-	 Also storing filenames in a list.
-	'''
+		'''
+		Storing in dct_lst with file name as key an value a list of strings of words.\
+		 Also storing filenames in a list.
+		'''
 
-	file_name = filename.split('\\')
-	path_ = path.split('\\')
-	file = ''
-	for i in file_name:
-		if i not in path_:
-			file = file + i
+		file_name = filename.split('\\')
+		path_ = path.split('\\')
+		file = ''
+		for i in file_name:
+			if i not in path_:
+				file = file + i
 
-	filename_lst.append(file)
-	dct_lst[file] = l
+		filename_lst.append(file)
+		dct_lst[file] = l
 
 '''
 Longest common substring(LCS) is to be calulated between to dcts.

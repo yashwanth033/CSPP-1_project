@@ -4,6 +4,10 @@ import re
 import os
 import logging
 
+import os
+pat = os.getcwd()
+pat = pat + '\word.txt'
+
 kgram_len_lst = []
 dct_lst = {}
 filename_lst = []
@@ -12,7 +16,8 @@ path = os.getcwd()
 '''
 List of stop words inserted in a list.
 '''
-f = open('C:\\Users\\INSPIRON\\Desktop\\MSIT\\CCPP-1\\Project\\word.txt','r')
+
+f = open(pat,'r')
 stop_word = set(f.read().split())
 f.close()
 
@@ -22,44 +27,45 @@ and remove any other .txt files from current directory.
 '''
 
 for filename in glob.glob(os.path.join(path, '*.txt')):
-	f = open(filename,'r')
-	fw = f.read()
-	f.close()
+	if filename != pat:
+		f = open(filename,'r')
+		fw = f.read()
+		f.close()
 
-	'''
-	Lower casing and removing special characters. Assuming words to be\
-	with alphabets, under_score and numeric characters only.
-	'''
+		'''
+		Lower casing and removing special characters. Assuming words to be\
+		with alphabets, under_score and numeric characters only.
+		'''
 
-	fw = fw.lower()
-	fw = re.sub(r'[^a-z0-9_ \n]', '', fw).split()
+		fw = fw.lower()
+		fw = re.sub(r'[^a-z0-9_ \n]', '', fw).split()
 
-	'''
-	remove stop words and make a string of all rest of the words.
-	'''
-	lw = []
-	for i in fw:
-		if i not in stop_word:
-			lw.append(i)
+		'''
+		remove stop words and make a string of all rest of the words.
+		'''
+		lw = []
+		for i in fw:
+			if i not in stop_word:
+				lw.append(i)
 
-	l = "".join(lw)
-
-
-	'''
-	Storing in dct_lst with file name as key an value a string.\
-	Also storing filenames in a list.
-	'''
+		l = "".join(lw)
 
 
-	file_name = filename.split('\\')
-	path_ = path.split('\\')
-	file = ''
-	for i in file_name:
-		if i not in path_:
-			file = file + i
+		'''
+		Storing in dct_lst with file name as key an value a string.\
+		Also storing filenames in a list.
+		'''
 
-	filename_lst.append(file)
-	dct_lst[file] = l
+
+		file_name = filename.split('\\')
+		path_ = path.split('\\')
+		file = ''
+		for i in file_name:
+			if i not in path_:
+				file = file + i
+
+		filename_lst.append(file)
+		dct_lst[file] = l
 
 
 '''

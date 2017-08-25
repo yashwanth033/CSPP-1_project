@@ -1,4 +1,4 @@
-25/08/2017 22:00:20 BAG OF WORDS 
+25/08/2017 23:45:15 BAG OF WORDS 
 
 Simlarity between test-1.txt and test-2.txt is: 100.00000000000003
 
@@ -20,7 +20,29 @@ test-3.txt and test-5.txt One or both files are empty.
 
 test-4.txt and test-5.txt One or both files are empty.
 
-25/08/2017 22:00:49 FINGER PRINT SIMILARITIES 
+25/08/2017 23:45:27 BAG OF WORDS 
+
+Simlarity between test-1.txt and test-2.txt is: 100.00000000000003
+
+test-1.txt and test-3.txt One or both files are empty.
+
+test-1.txt and test-4.txt One or both files are empty.
+
+Simlarity between test-1.txt and test-5.txt is: 51.63977794943223
+
+test-2.txt and test-3.txt One or both files are empty.
+
+test-2.txt and test-4.txt One or both files are empty.
+
+Simlarity between test-2.txt and test-5.txt is: 51.63977794943223
+
+test-3.txt and test-4.txt One or both files are empty.
+
+test-3.txt and test-5.txt One or both files are empty.
+
+test-4.txt and test-5.txt One or both files are empty.
+
+25/08/2017 23:45:44 FINGER PRINT SIMILARITIES 
 
 Fingerprint match between test-1.txt and test-2.txt is: 50.0
 
@@ -42,7 +64,7 @@ test-3.txt and test-5.txt are either empty or are too small with little length.
 
 test-4.txt and test-5.txt are either empty or are too small with little length.
 
-25/08/2017 22:01:18 LCS SIMILARITIES 
+25/08/2017 23:45:59 LCS SIMILARITIES 
 
 LCS between test-1.txt and test-2.txt is: 100.0
 
