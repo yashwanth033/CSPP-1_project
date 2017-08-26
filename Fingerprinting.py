@@ -74,41 +74,75 @@ Taking k as 5 to calculate k-grams and p as 99991 to get 0-mod p.
 k = 5
 p = 10
 
-def hash(x):
-	'''
-	Hash function to calculate hash values of k-grams.
-	'''
-	h = 0
-	for i in range(0,5):
-		h = h + (ord(x[i]))*(k**(5-i))
-	return h
+class finger_printing:
 
-def k_Gram(l):
-	'''
-	k gram function takes a string and returns a list of k grams \
-	with length 5.
-	'''
-	ls = []
-	for i in range(0,len(l)-4):
-		ls.append(l[i:i+5])
-	return ls
+	def hash(x):
+		'''
+		Hash function to calculate hash values of k-grams.
+		'''
+		h = 0
+		for i in range(0,5):
+			h = h + (ord(x[i]))*(k**(5-i))
+		return h
 
-def p_mod(ls):
-	'''
-	p mod function takes a list of hash values and gives us p mod values\
-	(p = 991) list.
-	'''
-	pm = []
-	for i in ls:
-		if i%p==0:
-			pm.append(i)
-	return pm
+	def k_Gram(l):
+		'''
+		k gram function takes a string and returns a list of k grams \
+		with length 5.
+		'''
+		ls = []
+		for i in range(0,len(l)-4):
+			ls.append(l[i:i+5])
+		return ls
+
+	def p_mod(ls):
+		'''
+		p mod function takes a list of hash values and gives us p mod values\
+		(p = 991) list.
+		'''
+		pm = []
+		for i in ls:
+			if i%p==0:
+				pm.append(i)
+		return pm
+
+	def Fngprnt(dct1, dct2, den):
+		'''
+		This finger print function takes two lists of p-mods and \
+		and compare those to give the match percentage.
+		'''
+		z = 0
+		i = 0
+		c = 0
+		for i in range(0,len(dct1)):
+			k = i
+			j = 0
+			c = 0
+			while(k<len(dct1) and j<len(dct2)):
+				while ((k<len(dct1) and j<len(dct2)) and  dct1[k]==dct2[j]):
+					c += 1
+					k += 1
+					j += 1
+				if(k<len(dct1) and j<len(dct2)):
+					if dct1[k] != dct2[j]:
+						k = i
+						if c>z:
+							z = c
+						c = 0
+						if dct1[k]!=dct2[j]:
+							j += 1
+			if c>z:
+				z = c	
+		if c>z:
+			z = c
+		return ((2*z)/(den))
+
 
 '''
 Converting strings to k-grams.
 '''
 for i in dct_lst:
-	dct_lst[i] = k_Gram(dct_lst[i])
+	dct_lst[i] = finger_printing.k_Gram(dct_lst[i])
 	kgram_len_lst.append(len(dct_lst[i]))
 
 '''
@@ -116,56 +150,32 @@ Converting k-grams to hashes.
 '''
 for i in dct_lst:
 	for j in range(0,len(dct_lst[i])):
-		dct_lst[i][j] = hash(dct_lst[i][j])
+		dct_lst[i][j] = finger_printing.hash(dct_lst[i][j])
 
 '''
 Stores signatures in lists for each file.
 '''
 for i in dct_lst:
-	dct_lst[i] = p_mod(dct_lst[i])
+	dct_lst[i] = finger_printing.p_mod(dct_lst[i])
 
-def Fngprnt(dct1, dct2, den):
-	'''
-	This finger print function takes two lists of p-mods and \
-	and compare those to give the match percentage.
-	'''
-	z = 0
-	i = 0
-	c = 0
-	for i in range(0,len(dct1)):
-		k = i
-		j = 0
-		c = 0
-		while(k<len(dct1) and j<len(dct2)):
-			while ((k<len(dct1) and j<len(dct2)) and  dct1[k]==dct2[j]):
-				c += 1
-				k += 1
-				j += 1
-			if(k<len(dct1) and j<len(dct2)):
-				if dct1[k] != dct2[j]:
-					k = i
-					if c>z:
-						z = c
-					c = 0
-					if dct1[k]!=dct2[j]:
-						j += 1
-		if c>z:
-			z = c	
-	if c>z:
-		z = c
-	return ((2*z)/(den))
-
+'''
+Compare file signatures as Longest common sequence.
+'''
 p = ''
 for i in range(0,(len(filename_lst)-1)):
 	for j in range((i+1),len(filename_lst)):
 		try:
 			d = kgram_len_lst[i] + kgram_len_lst[j]
 			s = ('Fingerprint match between '+str(filename_lst[i])+' and '+str(filename_lst[j])+\
-				' is: '+str(Fngprnt(dct_lst[filename_lst[i]],\
+				' is: '+str(finger_printing.Fngprnt(dct_lst[filename_lst[i]],\
 				 dct_lst[filename_lst[j]],d)*100))
 		except ZeroDivisionError:
 			s = (str(filename_lst[i])+' and '+str(filename_lst[j])+' are either empty or are too small with little length.')
 		p = p + '\n' + s + '\n'
+
+'''
+Loging into a log file.txt
+'''
 
 log = "log file.log"
 logging.basicConfig(filename=log,level=logging.DEBUG,\

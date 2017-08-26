@@ -50,43 +50,43 @@ for filename in glob.glob(os.path.join(path, '*.txt')):
 '''
 Longest common substring(LCS) is to be calulated between to dcts.
 '''
-
-def LCS(dct1, dct2):
-	'''
-	This LCS function takes two lists of strings and and compare those to give \
-	the largest common substring(LCS) percentage.
-	'''
-	z = 0
-	i = 0
-	c = 0
-	for i in range(0,len(dct1)):
-		k = i
-		j = 0
+class Lcs:
+	def LCS(dct1, dct2):
+		'''
+		This LCS function takes two lists of strings and and compare those to give \
+		the largest common substring(LCS) percentage.
+		'''
+		z = 0
+		i = 0
 		c = 0
-		while(k<len(dct1) and j<len(dct2)):
-			while ((k<len(dct1) and j<len(dct2)) and  dct1[k]==dct2[j]):
-				c += len(dct1[k])
-				k += 1
-				j += 1
-			if(k<len(dct1) and j<len(dct2)):
-				if dct1[k] != dct2[j]:
-					k = i
-					if c>z:
-						z = c
-					c = 0
-					if dct1[k]!=dct2[j]:
-						j += 1
+		for i in range(0,len(dct1)):
+			k = i
+			j = 0
+			c = 0
+			while(k<len(dct1) and j<len(dct2)):
+				while ((k<len(dct1) and j<len(dct2)) and  dct1[k]==dct2[j]):
+					c += len(dct1[k])
+					k += 1
+					j += 1
+				if(k<len(dct1) and j<len(dct2)):
+					if dct1[k] != dct2[j]:
+						k = i
+						if c>z:
+							z = c
+						c = 0
+						if dct1[k]!=dct2[j]:
+							j += 1
+			if c>z:
+				z = c	
 		if c>z:
-			z = c	
-	if c>z:
-		z = c
-	len_dct1 = 0
-	len_dct2 = 0
-	for i in dct1:
-		len_dct1 = len_dct1 + len(i)
-	for i in dct2:
-		len_dct2 = len_dct2 + len(i)
-	return ((2*z)/(len_dct1+len_dct2))
+			z = c
+		len_dct1 = 0
+		len_dct2 = 0
+		for i in dct1:
+			len_dct1 = len_dct1 + len(i)
+		for i in dct2:
+			len_dct2 = len_dct2 + len(i)
+		return ((2*z)/(len_dct1+len_dct2))
 
 '''
 Comparing all the lists of files.
@@ -96,7 +96,7 @@ for i in range(0,(len(filename_lst)-1)):
 	for j in range((i+1),len(filename_lst)):
 		try:
 			s = ('LCS between '+str(filename_lst[i])+' and '+str(filename_lst[j])+\
-				' is: '+str(LCS(dct_lst[filename_lst[i]],\
+				' is: '+str(Lcs.LCS(dct_lst[filename_lst[i]],\
 				 dct_lst[filename_lst[j]])*100))
 		except ZeroDivisionError:
 			s = (str(filename_lst[i])+' and '+str(filename_lst[j])+' are empty.')

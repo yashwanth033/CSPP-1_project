@@ -59,28 +59,30 @@ for filename in glob.glob(os.path.join(path, '*.txt')):
 			if i not in dct_lst[file]:
 				dct_lst[file][i] = l.count(i)
 
-def similarity(dct1, dct2):
+class Bag:
 
-	'''
-	fuction that takes two dcts of words and thier frequencies and \
-	return their cosine similarity.
-	'''
+	def similarity(dct1, dct2):
 
-	sum_similarity = 0
-	sum_cosine = 0
-	product_cosine = 1
-	for i in dct1:
-		if i in dct2:
-			sum_similarity = sum_similarity + (dct1[i]*dct2[i])
-	for i in dct1:
-		sum_cosine = sum_cosine + (dct1[i]**2)
-	product_cosine = product_cosine*math.sqrt(sum_cosine)
-	sum_cosine = 0
-	for i in dct2:
-		sum_cosine = sum_cosine + (dct2[i]**2)
-	product_cosine = product_cosine*math.sqrt(sum_cosine)
-	cos_similarity = sum_similarity/product_cosine
-	return (100*cos_similarity)
+		'''
+		fuction that takes two dcts of words and thier frequencies and \
+		return their cosine similarity.
+		'''
+
+		sum_similarity = 0
+		sum_cosine = 0
+		product_cosine = 1
+		for i in dct1:
+			if i in dct2:
+				sum_similarity = sum_similarity + (dct1[i]*dct2[i])
+		for i in dct1:
+			sum_cosine = sum_cosine + (dct1[i]**2)
+		product_cosine = product_cosine*math.sqrt(sum_cosine)
+		sum_cosine = 0
+		for i in dct2:
+			sum_cosine = sum_cosine + (dct2[i]**2)
+		product_cosine = product_cosine*math.sqrt(sum_cosine)
+		cos_similarity = sum_similarity/product_cosine
+		return (100*cos_similarity)
 '''
 Comparing each dct of words in loop and printing the similarity percentage.
 '''
@@ -89,7 +91,7 @@ for dct1 in range(0,(len(filename_lst)-1)):
 	for dct2 in range((dct1+1),len(filename_lst)):
 		try:
 			s = ('Simlarity between '+str(filename_lst[dct1])+' and '+\
-				str(filename_lst[dct2])+' is: '+str(similarity\
+				str(filename_lst[dct2])+' is: '+str(Bag.similarity\
 					(dct_lst[filename_lst[dct1]],dct_lst[filename_lst[dct2]])))
 		except ZeroDivisionError:
 			s = (str(filename_lst[dct1])+' and '+str(filename_lst[dct2])+\
